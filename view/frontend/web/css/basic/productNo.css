@@ -1,0 +1,27 @@
+.payin7_calculator.productNo { 
+    padding: 10px;    
+    font-size: 12px;
+    line-height: 20px;    
+    border-radius: 10px;
+    font-weight: bold;
+    border-style: solid;
+    text-align: center;
+}
+
+.payin7_calculator.productNo span.payin7Price {
+    font-size: 20px;
+    vertical-align: bottom;
+    margin: 0px 5px;
+}
+
+.payin7_calculator.productNo p {
+    margin: 0px !Important;
+}
+.payin7_calculator.productNo p span.title {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.info {
+    cursor: pointer;
+}

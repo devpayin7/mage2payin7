@@ -1,0 +1,10 @@
+.payin7_calculator { 
+    background: #CCC;
+    color: #225a85;
+    border-color: #AAA;
+}
+
+.payin7_calculator p  {
+    color: #225a85 !Important;
+    font-weight: bold;
+}

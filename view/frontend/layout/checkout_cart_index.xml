@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="checkout.cart.container">
+            <block class="Payin7\Mage2Payin7\Block\CheckoutCart" name="checkout.cart.payin7.before" before="-" template="Payin7_Mage2Payin7::checkout-cart.phtml" ifconfig="payment/mage2payin7/vistaPago/activo">
+                <arguments>
+                    <argument name="pos" xsi:type="string">before_price</argument>
+                </arguments>
+            </block>
+            <block class="Payin7\Mage2Payin7\Block\CheckoutCart" name="checkout.cart.payin7.after" after="-" template="Payin7_Mage2Payin7::checkout-cart.phtml" ifconfig="payment/mage2payin7/vistaPago/activo">
+                <arguments>
+                    <argument name="pos" xsi:type="string">after_price</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,29 @@
+.payin7_calculator.product_calculator { 
+    background: #fff;
+     border-color: #333;
+}
+.payin7_calculator.product_calculator p,
+.payin7_calculator.product_calculator span  {
+    color: #225a85;
+    font-weight: bold;
+}
+.payin7_calculator.product_calculator .calc-body .btn {
+    border-style: none !important;
+    background: #225a85;
+    color: #fff;
+}
+
+.payin7_calculator.product_calculator .calc-body .btn span {
+    color: #fff;
+}
+
+.payin7_calculator.product_calculator .calc-body .installments-count {
+    color: #000;
+    border: 1px solid #333;
+    background-color: #DDD;
+}
+
+.payin7_calculator.product_calculator i.icon-info {
+    border: 1px solid #225a85;
+    color: #225a85;
+}

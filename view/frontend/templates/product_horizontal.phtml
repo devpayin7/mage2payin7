@@ -1,0 +1,37 @@
+<?php $payin7Data = $block->getPayin7Data(); ?>
+<?php $defaultPayin7Data = $block->getDefaultPayin7Data(); ?>
+
+<div class="payin7_product_horizontal payin7_calculator product_calculator <?= $block->getClass() ?>" style="<?= $block->getStyle() ?>" data-payin7='<?= json_encode($payin7Data) ?>'>
+    <a href="#" data-link-action="quickview" class="quickview"><i class="icon-info" aria-hidden="true"></i></a>
+    <p class="finance-title"><?= __("Financia tu compra") ?></p>
+    
+    <div><img src="<?= $this->getViewFileUrl('Payin7_Mage2Payin7::images/logo_calculadora.png') ?>" alt=""/></div>
+    <div>
+        <div class="calc-body">
+            <button type="button" class="btn btn-minus">
+                <span></span>
+            </button>
+            <input type="text" class="installments-count" readonly="readonly" value="<?= $defaultPayin7Data['months'] ?>">
+                <button type="button" class="btn btn-plus">
+                    <span></span>
+                </button>
+            <span class="installments-sub"><?=__("cuotas") ?></span>
+        </div>
+        <div class="calc-results">
+            <span class="calc-amount"><?= $block->formatPrice($defaultPayin7Data['amount']) ?></span>
+            <span> / <?= __("MES en") ?></span>
+            <span class="calc-months"><?= $defaultPayin7Data['months'] ?></span>
+            <span class="calc-months-after"><?= __("CUOTAS") ?></span>
+            <?php
+            if($block->showTinTae()) {
+            ?>
+            <br/>(<span class="calc-tin"><?= $defaultPayin7Data['tin'] ?></span>% <?= __("TIN") ?>, <span class="calc-tae"><?= $defaultPayin7Data['tae'] ?></span>% <?= __("TAE") ?>)
+            <br/><?= $block->getTextoImporteFinanciado().' <span class="calc-financial">'.$block->formatPrice($defaultPayin7Data['months'] * $defaultPayin7Data['amount']).'</span>' ?>
+            <?php
+            }
+            ?>
+        </div>  
+    </div>
+    <div style="clear: both;float: none"></div>
+</div>    
+

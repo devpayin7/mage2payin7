@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="mage2payin7" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Payin7</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <group id="general" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Configuracion general</label>
+                    <field id="integration_id" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Integration id</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    </field>
+                    <field id="api_key" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Api key</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    </field>
+                    <field id="calculator_key" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Calculator key</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    </field>
+                    <field id="sandbox" translate="label" type="select" sortOrder="85" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Sandbox</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="minimum_cost" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Minimum cost</label>
+                        <frontend_class>validate-number</frontend_class>
+                    </field>
+                    <field id="maximum_cost" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Maximum cost</label>
+                        <frontend_class>validate-number</frontend_class>
+                    </field>
+                    <field id="allowspecific" translate="label" type="allowspecific" sortOrder="130" showInDefault="9"
+                           showInWebsite="1" showInStore="0">
+                        <label>Payment From Applicable Countries</label>
+                        <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                    </field>
+                    <field id="specificcountry" translate="label" type="multiselect" sortOrder="140" showInDefault="1"
+                           showInWebsite="1" showInStore="0">
+                        <label>Payment From Specific Countries</label>
+                        <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    </field>
+                    <field id="sort_order" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1"
+                           showInStore="0">
+                        <label>Sort Order</label>
+                        <frontend_class>validate-number</frontend_class>
+                    </field>
+                </group>
+                
+                <group id="calculadora" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Configuracion de la calculadora</label>
+                    <field id="titulo" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Titulo</label>
+                        <frontend_model>Payin7\Mage2Payin7\Block\ColorPicker</frontend_model>
+                    </field>
+                    <field id="subtitulo" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Subtitulo</label>
+                        <frontend_model>Payin7\Mage2Payin7\Block\ColorPicker</frontend_model>
+                    </field>
+                    <field id="pie" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Pie</label>
+                        <frontend_model>Payin7\Mage2Payin7\Block\ColorPicker</frontend_model>
+                    </field>
+                    <field id="pieHtml" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Pie html</label>
+                        <frontend_model>Payin7\Mage2Payin7\Block\ColorPicker</frontend_model>
+                    </field>
+                    <field id="cuotas" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Cuotas</label>
+                        <frontend_model>Payin7\Mage2Payin7\Block\ColorPicker</frontend_model>
+                    </field>
+                    <field id="importeMes" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Importe por mes</label>
+                        <frontend_model>Payin7\Mage2Payin7\Block\ColorPicker</frontend_model>
+                    </field>
+                    <field id="fondo" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Color de fondo</label>
+                        <frontend_model>Payin7\Mage2Payin7\Block\ColorPicker</frontend_model>
+                    </field>
+                    <field id="textoTitulo" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Texto titulo calculadora</label>
+                    </field>
+                    <field id="textoSubtitulo" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Texto subtitulo calculadora</label>
+                    </field>
+                    <field id="textoPie" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Texto pie</label>
+                    </field>
+                    <field id="textoPieHtml" translate="label" sortOrder="1" type="editor" showInStore="1" showInDefault="1" >
+                        <label>Texto pie html</label>
+                        <frontend_model>Payin7\Mage2Payin7\Block\Editor</frontend_model>
+                    </field>
+                    <field id="textoCuotas" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Texto cuotas</label>
+                    </field>
+                    <field id="textoImporteMes" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Importe por mes</label>
+                    </field>
+                    <field id="textoImporteFinanciado" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Importe financiado</label>
+                    </field>
+                    <field id="selectorPosicionCalculadora" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Selector jquery posicion calculadora</label>
+                    </field>
+                    <field id="moverCalculadora" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Mover la calculadora a</label>
+                        <source_model>Payin7\Mage2Payin7\Model\Config\CalculadoraSelect</source_model>
+                    </field>
+                    <field id="logoCalculadora" translate="label" type="image" sortOrder="1" showInDefault="1">
+                        <label>Logo calculadora</label>
+                        <base_url type="media" scope_info="1">my_image_folder</base_url>
+                        <upload_dir config="system" scope_info="1">mage2payin7</upload_dir>
+                    </field>
+                    <field id="mostrarTinTae" translate="label" type="select" sortOrder="1" showInStore="1" showInDefault="1" >
+                        <label>Mostrar informacion de Tin y Tae</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="cleanCache" translate="label" type="button" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <frontend_model>Payin7\Mage2Payin7\Block\System\Config\Cache</frontend_model>
+                        <label>Vaciar la cache</label>
+                    </field>
+                    <field id="evictCache" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Caducidad de los datos en cache (segundos)</label>
+                    </field>
+                </group>
+                
+                <group id="listado" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Configuracion del listado de categorias</label>
+                    <field id="activo" translate="label" sortOrder="1" type="select" showInStore="1" showInDefault="1" >
+                        <label>Activo</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="tema" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Tema</label>
+                        <source_model>Payin7\Mage2Payin7\Model\Config\TemaSelect</source_model>
+                    </field>
+                    <field id="posicion" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Posicion</label>
+                        <source_model>Payin7\Mage2Payin7\Model\Config\PosicionSelect</source_model>
+                    </field>
+                    <field id="width" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Longitud (%)</label>
+                    </field>
+                    <field id="borderWidth" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Borde</label>
+                    </field>
+                    <field id="align" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Alineacion</label>
+                        <source_model>Payin7\Mage2Payin7\Model\Config\AlineacionSelect</source_model>
+                    </field>
+                </group>
+                
+                <group id="producto" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Configuracion de la ficha de producto</label>
+                    <field id="activo" translate="label" sortOrder="1" type="select" showInStore="1" showInDefault="1" >
+                        <label>Activo</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="tipoVisualizacion" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Tipo de visualización</label>
+                        <source_model>Payin7\Mage2Payin7\Model\Config\TipoVisualizacionSelect</source_model>
+                    </field>
+                    <field id="tema" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Tema</label>
+                        <source_model>Payin7\Mage2Payin7\Model\Config\TemaSelect</source_model>
+                    </field>
+                    <field id="posicion" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Posicion</label>
+                        <source_model>Payin7\Mage2Payin7\Model\Config\PosicionProductoSelect</source_model>
+                    </field>
+                    <field id="width" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Longitud (%)</label>
+                    </field>
+                    <field id="borderWidth" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Borde</label>
+                    </field>
+                    <field id="align" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Alineacion</label>
+                        <source_model>Payin7\Mage2Payin7\Model\Config\AlineacionSelect</source_model>
+                    </field>
+                </group>
+                
+                <group id="noFinanciable" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Configuracion de la ficha de producto no financiable</label>
+                    <field id="activo" translate="label" sortOrder="1" type="select" showInStore="1" showInDefault="1" >
+                        <label>Activo</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="tema" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Tema</label>
+                        <source_model>Payin7\Mage2Payin7\Model\Config\TemaSelect</source_model>
+                    </field>
+                    <field id="posicion" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Posicion</label>
+                        <source_model>Payin7\Mage2Payin7\Model\Config\PosicionSelect</source_model>
+                    </field>
+                    <field id="width" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Longitud (%)</label>
+                    </field>
+                    <field id="align" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Alineacion</label>
+                        <source_model>Payin7\Mage2Payin7\Model\Config\AlineacionSelect</source_model>
+                    </field>
+                </group>
+                
+                <group id="vistaPago" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Configuracion de la vista de pago</label>
+                    <field id="activo" translate="label" sortOrder="1" type="select" showInStore="1" showInDefault="1" >
+                        <label>Activo</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="tema" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Tema</label>
+                        <source_model>Payin7\Mage2Payin7\Model\Config\TemaSelect</source_model>
+                    </field>
+                    <field id="posicion" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Posicion</label>
+                        <source_model>Payin7\Mage2Payin7\Model\Config\PosicionSelect</source_model>
+                    </field>
+                    <field id="width" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Longitud (%)</label>
+                    </field>
+                    <field id="borderWidth" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Borde</label>
+                    </field>
+                    <field id="align" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Alineacion</label>
+                        <source_model>Payin7\Mage2Payin7\Model\Config\AlineacionSelect</source_model>
+                    </field>
+                    <field id="despedida" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Mostrar ventana de despedida</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="textoDespedida" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Texto despedida</label>
+                    </field>
+                    <field id="tiempoDespedida" translate="label" type="text" sortOrder="1" showInDefault="1">
+                        <label>Tiempo despedida (s)</label>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

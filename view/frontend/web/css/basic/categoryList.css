@@ -1,0 +1,28 @@
+.payin7_calculator.categoryList { 
+    padding: 10px;    
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    border-style: solid;
+    clear:both;
+}
+
+.payin7_calculator.categoryList span.payin7Price {
+    font-size: 20px;
+    vertical-align: bottom;
+    margin: 0px 5px;
+}
+
+.payin7_calculator.categoryList p {
+    margin: 0px !Important;
+}
+
+.info {
+    cursor: pointer;
+}
+
+.payin7_category_list img {
+    height: 50px;
+    background-color: white;
+}

@@ -1,0 +1,11 @@
+<div class="payin7_productNo payin7_calculator productNo" style="<?= $block->getStyle() ?>">
+   <img src="<?= $this->getViewFileUrl('Payin7_Mage2Payin7::images/logo_calculadora.png') ?>" alt=""/>
+   <p class="finance-title"><?= $block->getTitulo() ?></p>
+   <p class="finance-subtitle"><?= $block->getSubtitulo() ?></p>        
+   <p>
+        <span><?= __('A partir de') ?></span>
+        <span class="payin7Price"><?= $block->formatPrice($block->getCosteMinimo()) ?></span>
+        <span><?= __('de compra') ?></span>
+    </p>        
+    <p><span><?= __('Inmediato y sin papeleos') ?></span></p>
+</div>

@@ -1,0 +1,22 @@
+<?php 
+if($block->getPrice()) { 
+    $installment = $block->getMaxMonthsPayin7Data();    
+?>
+<div class="payin7_checkout_cart payin7_calculator paymentProcess" style="<?= $block->getStyle() ?>" data-is_cart="1">
+    <p>
+        <img src="<?= $this->getViewFileUrl('Payin7_Mage2Payin7::images/logo_calculadora.png') ?>" alt=""/><br/>
+        <span><?= __('DESDE') ?></span>
+        <span class="payinPrice"><?= $block->getPrice() ?></span>
+        <span><?= __('EN').' '.$installment['months'].' '.__('CUOTAS') ?></span>
+        <br/><span>(<?= __('%1 de gastos gestión incluidos en cada cuota',$block->formatPrice($installment['commission'])) ?>)<a href="#myModal"><sup>1</sup></a></span>
+        <?php
+        if($block->showTinTae()) {
+        ?>
+        <br/>(<?= __("TIN") ?> <?= $installment['tin'] ?>%, <?= __("TAE") ?> <?= $installment['tae'] ?>% )
+        <br/><?= $block->getTextoImporteFinanciado().' '.$block->formatPrice($installment['months'] * $installment['amount']) ?>
+        <?php
+        }
+        ?>
+    </p>
+</div>
+<?php } ?>

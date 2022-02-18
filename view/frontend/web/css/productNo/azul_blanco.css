@@ -1,0 +1,9 @@
+.payin7_calculator.productNo { 
+    background: #fff;
+    border-color: #333;
+}
+
+.payin7_calculator.productNo p  {
+    color: #225a85 !Important;
+    font-weight: bold;
+}

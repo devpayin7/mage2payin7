@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Payment Method Facade configuration -->
+    <virtualType name="Mage2Payin7Facade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">\Payin7\Mage2Payin7\Model\Ui\ConfigProvider::CODE</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">Payin7\Mage2Payin7\Block\Info</argument>
+            <argument name="valueHandlerPool" xsi:type="object">Mage2Payin7ValueHandlerPool</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Configuration reader -->
+    <virtualType name="Mage2Payin7Config" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">\Payin7\Mage2Payin7\Model\Ui\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+    
+     <!-- Value handlers infrastructure -->
+    <virtualType name="Mage2Payin7ValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">Mage2Payin7ConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Mage2Payin7ConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Mage2Payin7Config</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Payin7\Mage2Payin7\Block\Info">
+        <arguments>
+            <argument name="config" xsi:type="object">Mage2Payin7Config</argument>
+        </arguments>
+    </type>
+    
+    <type name="Magento\Framework\App\Request\CsrfValidator">
+        <plugin name="csrf_validator_skip" type="Payin7\Mage2Payin7\Plugin\CsrfValidatorSkip" />
+    </type>
+</config>

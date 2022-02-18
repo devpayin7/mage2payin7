@@ -1,0 +1,57 @@
+.calculator_left {
+ float:left; width:50%;}
+.calculator_right {
+ float:right; width:50%;}
+.payin7_calculator {
+   display: block;
+   overflow: auto;
+border: none !Important;
+}
+.payin7_calculator .calc-body .btn.btn-minus {
+background-image: url("/modules/imaxpayin77/views/img/menos-up.png");
+background-repeat: no-repeat;
+background-size: contain;
+}
+.payin7_calculator .calc-body .btn.btn-plus {
+background-image: url("/modules/imaxpayin77/views/img/mas-up.png");
+background-repeat: no-repeat;
+background-size: contain;
+}
+.payin7_calculator .calc-body .btn.btn-minus.mousedown {
+background-image: url("/modules/imaxpayin77/views/img/menos-down.png");
+}
+.payin7_calculator .calc-body .btn.btn-plus.mousedown {
+background-image: url("/modules/imaxpayin77/views/img/mas-down.png");
+}
+.installments-count {
+background-image: url("/modules/imaxpayin77/views/img/cuotas.png");
+background-repeat: no-repeat;
+background-size: cover;
+border: none !Important;
+background-color: transparent;
+}
+.payin7_calculator .finance-title {
+color:#225a88;
+}
+.payin7_calculator .finance-subtitle {
+color:#37a8db;
+}
+.payin7_calculator .finance-footer {
+color:#000000;
+}
+.payin7_calculator .finance-htmlfooter {
+color:#ff0a26;
+clear:both;
+}
+.payin7_calculator .installments-sub {
+color:#37a8db;
+}
+.payin7_calculator .calc-results, 
+.payin7_calculator .calc-results span
+{
+color:#225a88;
+}
+.payin7_calculator.vertical .calc-body .btn-minus::after ,
+.payin7_calculator.vertical .calc-body .btn-plus::after {
+content:"" !Important;
+}

@@ -1,0 +1,40 @@
+<?php $payin7Data = $block->getPayin7Data(); ?>
+<?php $defaultPayin7Data = $block->getDefaultPayin7Data(); ?>
+
+<div class="payin7_product_horizontal_logo payin7_calculator product_calculator <?= $block->getClass() ?>" style="<?= $block->getStyle() ?>" data-payin7='<?= json_encode($payin7Data) ?>'>
+    <div class="leftColumn">
+        <p class="finance-title"><?= $block->getTitulo() ?></p>
+        <p class="finance-subtitle"><?= $block->getSubtitulo() ?></p>
+        <p class="logoPayin7">
+            <img src="<?= $this->getViewFileUrl('Payin7_Mage2Payin7::images/logo_calculadora.png') ?>" alt=""/>
+        </p> 
+    </div>
+    
+    <div class="rightColumn">
+            <div class="calc-body">
+        <button type="button" class="btn btn-minus">
+            <span class="button_more"></span>
+        </button>
+        <input type="text" class="installments-count" readonly="readonly" value="<?= $defaultPayin7Data['months'] ?>">
+            <button type="button" class="btn btn-plus">
+                <span></span>
+            </button>
+        <span class="installments-sub"><?= $block->getTextoCuotas() ?></span>
+    </div>
+    <div class="calc-results">
+        <span class="calc-amount"><?= $block->formatPrice($defaultPayin7Data['amount']) ?></span>
+        <span> <?= $block->getTextoImporteMes() ?></span>
+        <span class="calc-months"><?= $defaultPayin7Data['months'] ?></span>
+        <span class="calc-months-after"><?= __("CUOTAS") ?></span>
+        <br/><span>(<?= __('%1 de gastos gestión incluidos en cada cuota',$block->formatPrice($defaultPayin7Data['commission']) ) ?>)<a href="#myModal"><sup>1</sup></a></span>
+        <?php
+        if($block->showTinTae()) {
+        ?>
+        <br/>(<?= __("TIN") ?> <span class="calc-tin"><?= $defaultPayin7Data['tin'] ?></span>%, <?= __("TAE") ?> <span class="calc-tae"><?= $defaultPayin7Data['tae'] ?></span>%)
+        <br/><?= $block->getTextoImporteFinanciado().' <span class="calc-financial">'.$block->formatPrice($defaultPayin7Data['months'] * $defaultPayin7Data['amount']).'</span>' ?>
+        <?php
+        }
+        ?>
+    </div>
+    </div>
+</div>

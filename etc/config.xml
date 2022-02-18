@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <mage2payin7>
+                <model>Mage2Payin7Facade</model>
+                <title>Payin7</title>
+                <currency>EUR</currency>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_void>1</can_void>
+                <can_use_checkout>1</can_use_checkout>
+                <is_gateway>1</is_gateway>
+                <active>0</active>
+                
+                <general>
+                    <sandbox>1</sandbox>
+                    <integration_id backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                    <api_key backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                    <calculator_key backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                    <sort_order>1</sort_order>
+                    <payin7_url>https://core.payin7.com/formapi/submit</payin7_url>
+                    <payin7_api>https://api.payin7.com</payin7_api>
+                    <minimum_cost>25</minimum_cost>
+                    <maximum_cost>9999</maximum_cost>
+                </general>
+                
+                <calculadora>
+                    <titulo>225a88</titulo>
+                    <subtitulo>37a8db</subtitulo>
+                    <pie>000000</pie>
+                    <pieHtml>ff0a26</pieHtml>
+                    <cuotas>37a8db</cuotas>
+                    <importeMes>225a88</importeMes>
+                    <textoTitulo>Financia tu compra</textoTitulo>
+                    <textoSubtitulo>paga en cuotas mensuales</textoSubtitulo>
+                    <textoPie>+ Info</textoPie>
+                    <textoCuotas>CUOTAS</textoCuotas>
+                    <textoImporteMes>/MES EN</textoImporteMes>
+                    <textoImporteFinanciado>IMPORTE TOTAL ADEUDADO:</textoImporteFinanciado>
+                    <moverCalculadora>1</moverCalculadora>
+                    <mostrarTinTae>0</mostrarTinTae>
+                    <evictCache>86400</evictCache>
+                </calculadora>
+                
+                <listado>
+                    <activo>1</activo>
+                    <tema>tema</tema>
+                    <posicion>before_price</posicion>
+                    <width>auto</width>
+                    <align>center</align>
+                </listado>
+                
+                <producto>
+                    <activo>1</activo>
+                    <tipoVisualizacion>horizontal_logo</tipoVisualizacion>
+                    <tema>manual</tema>
+                    <posicion>after</posicion>
+                    <width>auto</width>
+                    <borderWidth>2</borderWidth>
+                    <align>center</align>
+                </producto>
+                
+                <noFinanciable>
+                    <activo>1</activo>
+                    <tema>neutro</tema>
+                    <posicion>displayProductPriceBlock</posicion>
+                    <width>auto</width>
+                    <align>center</align>
+                </noFinanciable>
+                
+                <vistaPago>
+                    <activo>1</activo>
+                    <tema>azul</tema>
+                    <posicion>after</posicion>
+                    <width>auto</width>
+                    <align>center</align>
+                    <despedida>1</despedida>
+                    <textoDespedida>Usted está siendo redirigido a Payin7</textoDespedida>
+                    <tiempoDespedida>2</tiempoDespedida>
+                </vistaPago>
+            </mage2payin7>
+        </payment>
+    </default>
+</config>

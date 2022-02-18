@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+		<referenceBlock name="head.additional">
+			<block  template="Payin7_Mage2Payin7::header.phtml"
+                class="Payin7\Mage2Payin7\Block\Header"
+                name="payin7_header" />
+		</referenceBlock>
+   </body>
+</page>

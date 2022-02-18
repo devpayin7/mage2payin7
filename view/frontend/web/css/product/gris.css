@@ -1,0 +1,26 @@
+.payin7_calculator.product_calculator { 
+    background: #CCC; 
+    border-color: #AAA;
+}
+.payin7_calculator.product_calculator p,
+.payin7_calculator.product_calculator span  {
+    color: #000;
+    font-weight: bold;
+}
+
+.payin7_calculator.product_calculator .calc-body .btn {
+    border-style: none !important;
+    background: #AAA;
+    color: #fff;
+}
+
+.payin7_calculator.product_calculator .calc-body .installments-count {
+    color: #000;
+    border: 1px solid #333;
+    background-color: #ddd;
+}
+
+.payin7_calculator.product_calculator i.icon-info {
+    border: 1px solid #000;
+    color: #000;
+}

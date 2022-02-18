@@ -1,0 +1,33 @@
+<div class="payin7_product_drop_large payin7_calculator product_calculator <?= $block->getClass() ?>" style="<?= $block->getStyle() ?>" data-payin7='<?= json_encode($block->getPayin7Data()) ?>'>
+    <p>
+        <img src="<?= $this->getViewFileUrl('Payin7_Mage2Payin7::images/logo_calculadora.png') ?>" alt=""/>
+        <span class="finance-title"><?= __("Financia tu compra") ?></span>
+        <i class="icon-info" aria-hidden="true"></i>
+        <select id="payin7_calculator_select">
+            <?php
+            $data = $block->getPayin7Data();
+            if(!empty($data['commission'][0]['installments'])) {
+                foreach($data['commission'] as $installments) {
+                    foreach($installments['installments'] as $installment) {
+                        $selected = ($installment['months'] == $installments['default_installments'] ? 'selected="selected"' : '');
+            ?>
+                        <option value="<?= $installment['months'] ?>" <?= $selected ?>>
+                            <?= $block->formatPrice($installment['amount']).'/'.__('MES') ?>
+                            <?= __('EN').' '.$installment['months'].' '.__('CUOTAS') ?>
+                            <?php
+                            if($block->showTinTae()) {
+                            ?>,
+                                (<?= __("TIN") ?> <?= $installment['tin'] ?>%, <?= __("TAE") ?> <?= $installment['tae'] ?>% ),
+                            <?= $block->getTextoImporteFinanciado().' '.$block->formatPrice($installment['months'] * $installment['amount']) ?>
+                            <?php
+                            }
+                            ?>
+                        </option>
+            <?php
+                    }
+                }
+            }
+            ?>
+        </select>
+    </p>
+</div>

@@ -1,0 +1,419 @@
+.payin7_calculator.horizontal .calculator_left {
+ float:left; width:50%;}
+.payin7_calculator.horizontal .calculator_right {
+ float:right; width:50%;}
+.payin7_calculator.product_calculator { 
+    padding: 10px;    
+    font-size: 12px;
+    line-height: 20px;    
+    border-radius: 10px;
+    font-weight: bold;
+    border-style: solid;
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.payin7_calculator.horizontal .calc-results,
+.payin7_calculator.vertical .calc-results,
+.payin7_calculator.horizontal_logo .calc-results
+{
+    font-size: 15px;
+}
+
+.payin7_calculator .calc-body .btn {
+    outline: none;
+}
+
+/*  HORIZONTAL  */
+.payin7_calculator.horizontal .finance-title{
+    display: block;
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+.payin7_calculator.horizontal .calc-body .btn{
+    border-style: none !important;
+    font-size: 26px;
+    font-weight: bold;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    border-radius: 18px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 21px;
+    padding: 0 !important;
+    margin: 0;
+}
+
+.payin7_calculator.horizontal .calc-body .btn-minus span{
+    height: 30px;
+    line-height: 25px;
+    vertical-align: top !important;
+    font-size: 40px;
+    position: relative;
+}
+
+.payin7_calculator.horizontal .calc-body .installments-count{
+    width: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+
+.payin7_calculator.horizontal .calc-body .installments-sub{
+    display: block;
+    font-size: 9px;
+    text-transform: uppercase;
+}
+
+.payin7_calculator.horizontal i.icon-info{
+    padding: 3px;    
+    float: right;
+    border-radius: 100%;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+
+/*  HORIZONTAL  LOGO */
+.payin7_calculator.horizontal_logo .finance-title{
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.payin7_calculator.horizontal_logo .finance-subtitle{
+    display: block;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+
+.payin7_calculator.horizontal_logo .calc-body .btn{
+    border-style: none !important;
+    font-size: 26px;
+    font-weight: bold;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    border-radius: 18px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 22px;
+    padding: 0 !important;
+    margin: 0;
+}
+
+.payin7_calculator.horizontal_logo .calc-body .btn-minus span{
+    height: 30px;
+    line-height: 25px;
+    vertical-align: top !important;
+    font-size: 40px;
+    position: relative;
+}
+
+.payin7_calculator.horizontal_logo .calc-body .installments-count{
+    width: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+.payin7_calculator.horizontal_logo .calc-body .installments-sub{
+    display: block;
+    font-size: 9px;
+    text-transform: uppercase;
+}
+
+.payin7_calculator.horizontal_logo i.icon-info{
+    padding: 3px;    
+    float: right;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.payin7_calculator.product_calculator.horizontal_logo .leftColumn {
+    width: 50%;
+    float: left;
+    margin-top: 20px;
+}
+.payin7_calculator.product_calculator.horizontal_logo .rightColumn {
+    margin-top:30px;
+    margin-bottom: 30px;
+}
+
+.leftColumn p.logoPayin7 img {
+    width: 75px;
+}
+
+/*  POP-UP  */
+.modals-wrapper .modal-popup .modal-inner-wrap {
+    background-color: #225a85;
+}
+
+.containerPayin7Finance {
+    text-align: center;
+    background-color: #225a85;
+}
+
+.containerPayin7Finance p, .containerPayin7Finance p span {
+    color:#fff;
+}
+
+.containerPayin7Finance .financeTitle {
+    font-weight: bold;
+    font-size: 17px;
+    margin-top: 15px;
+}
+.containerPayin7Finance .financeSubTitle {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.containerPayin7Finance table td {
+    text-align: center;
+}
+.containerPayin7Finance ul {
+     padding-bottom: 10px;
+     padding-left: 0;
+     list-style: none;
+}
+
+.containerPayin7Finance ul li {
+    height: 150px;
+    border:1px solid #000;
+    padding: 10px 0px;
+    float:left;
+    width: 33%;
+    margin-bottom: 0;
+}
+.containerPayin7Finance ul li div p span.calc-months {
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 16px;
+}
+
+
+/*  VERTICAL    */
+
+.payin7_calculator.vertical {
+       min-height: 80px;
+}
+
+.payin7_calculator.vertical .left {
+    float: left;
+    width: 60%;
+}
+
+.payin7_calculator.vertical .right {
+    float: right;
+    width: 40%;
+}
+
+.payin7_calculator.vertical .finance-title {
+    display: block;
+    font-size: calc(0.3em + 1vw);
+    margin-bottom: 5px;    
+}
+.payin7_calculator.vertical .finance-subtitle{
+	display: block;
+    font-size: calc(0.5em + 0.5vw);
+    margin-bottom: 5px;    
+}
+
+
+.payin7_calculator.vertical .calc-results {
+    margin-bottom:0px !Important
+}
+.payin7_calculator.vertical .calc-body {
+    margin-top: 10px;
+}
+
+.payin7_calculator.vertical .calc-body .btn {
+    border-style: none !important;
+    background: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    border-radius: 18px;
+    display: inline-block;
+    
+    line-height: 3px;
+    padding: 0 !important;
+    margin: 0;	
+	width: 35px;
+    height: 35px;
+	/*
+    vertical-align: text-bottom;
+	width: 17px;
+    height: 17px;
+	*/
+}
+
+.payin7_calculator.vertical .calc-body .btn-minus {
+    line-height: 1px;
+    font-size: 20px;
+    position: relative;
+}
+
+.payin7_calculator.vertical .calc-body .installments-count {
+    
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
+    border-radius: 4px;
+    width: 55px;
+    height:30px;
+    vertical-align: middle;
+    /*width: 30px;*/
+}
+
+
+.payin7_calculator.vertical .calc-body .installments-sub {
+    display: block;
+    font-size: 9px;
+    text-transform: uppercase;
+}
+
+.payin7_calculator.vertical i.icon-info {
+    padding: 3px;    
+    float: left;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.payin7_calculator.product_calculator.vertical .logoPayin7 img {
+	width:50px;
+	height:auto;
+}
+
+ /* DROP_SMALL  */
+ 
+ .payin7_calculator.drop_small i.icon-info {
+    padding: 3px;    
+    float: right;
+    border-radius: 100%;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+
+ /* DROP_LARGE */
+ 
+  .payin7_calculator.drop_large i.icon-info {
+    padding: 3px;    
+    border-radius: 100%;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+.icon-info {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
+.icon-info:before {
+  /*content: ""; */
+  content: "i"; 
+  font-weight: bolder;
+
+}
+
+.payin7_calculator.product_calculator.horizontal .left {
+    width: 45%;
+    float: left;
+}
+
+.payin7_calculator.product_calculator.horizontal .right {
+    width: 55%;
+    float: left;
+}
+
+.info {
+    cursor: pointer;
+}
+
+.payin7_calculator .calc-body .btn-minus::after {
+    content: "-";
+}
+.payin7_calculator .calc-body .btn-plus::after {
+    content: "+";
+}
+
+#payin7_calculator_select {
+    width: auto;
+}
+
+.payin7_calculator.drop_large p {
+    margin-bottom: 0;
+}
+
+.payin7_product_horizontal > div {
+    float: left;
+}
+
+.payin7_product_horizontal > div img {
+    width: 50%;
+}
+
+.payin7_product_drop_small select, .payin7_product_drop_large select {
+    font-size: 0.9em;
+}
+
+.payin7_product_drop_small > div img, .payin7_product_drop_large > p img {
+    height: 30px;
+    vertical-align: middle;
+}
+
+.payin7_product_drop_small > div:first-child, .payin7_product_drop_large > p:first-child  {
+    margin-bottom: 3px;
+}
+
+.payin7_productNo img {
+    float: left;
+    height: 75px;
+}
+
+#payin7ByeMessage {
+    text-align: center;
+    position: fixed;
+    top: 10%;
+    background-color: white;
+    padding: 50px;
+    z-index: 9999;
+}
+
+#payin7ByeMessage p {
+    font-weight: bold;
+}
+
+#payin7Overlay {
+    opacity: 0.6;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}

@@ -1,0 +1,11 @@
+.payin7_calculator.categoryList { 
+    background: #fff; 
+    border-color: #333;
+}
+.payin7_calculator p span.payin7Price {
+    color: #fff !Important;
+}
+.payin7_calculator.categoryList p, .payin7_calculator.categoryList p span  {
+    color: #225a85 !Important;
+    font-weight: bold;
+}
