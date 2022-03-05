@@ -15,8 +15,6 @@ require([
                 break;
         }
     }
-
-    document.querySelector('.payin7_calculator.product_calculator img').style.display = 'none';
     
     //Cambio de combinacion
     $('.swatch-opt').on('change', function() {
