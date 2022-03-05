@@ -155,6 +155,10 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
         }
         else {
             $this->logger->warning('Payin7 callback - Error en signature.');
+
+            $resultRedirect = $this->resultRedirectFactory->create();
+            $resultRedirect->setPath('checkout/onepage/success');
+            return $resultRedirect;
         }
 
         return '';
