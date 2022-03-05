@@ -60,7 +60,7 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
         
         $idQuote = $this->getRequest()->getParam('store_data');
         $order_state = $this->getRequest()->getParam('order_state');
-        $signature = $this->getRequest()->getParam('signature');
+        $signature = $this->getRequest()->getParam('signature2');
         $order_id = $this->getRequest()->getParam('order_id');
         $quote = $this->_quoteFactory->create()->load($idQuote);
 
