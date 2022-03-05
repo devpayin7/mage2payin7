@@ -72,10 +72,12 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
             $savedQuote->load($quote->getId());
             
             if($order_state == 'active') {
+                $this->logger->info('Payin7 ON ACTIVE');
                 if($quote->getIsActive() && !$savedQuote->getCreatingOrder()) {
                     $savedQuote->setCreatingOrder(1);
                     $savedQuote->save();
                     
+                    $this->logger->info('Payin7 SAVED QUOTE');
                     //Creamos el pedido
                     $quote->getPayment()->importData(['method' => 'mage2payin7']);
                     $quote->collectTotals()->save();
@@ -84,6 +86,7 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
                         $order->setState('processing')->setStatus('processing');
                         //Creamos la factura
                         if($order->canInvoice()) {
+                            $this->logger->info('Payin7 CREATE INVOICE');
                             $invoice = $this->_invoiceService->prepareInvoice($order);
                             $invoice->register();
                             $invoice->save();
@@ -93,7 +96,9 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
                                 $invoice->getOrder()
                             );
                             $transactionSave->save();
+                            $this->logger->info('Payin7 TRANSACTION SAVE');
                             $this->invoiceSender->send($invoice);
+                            $this->logger->info('Payin7 AFTER TRANSACTION SAVE');
                             //send notification code
                             $order->addStatusHistoryComment(
                                 __('Notified customer about invoice #%1.', $invoice->getId())
@@ -105,11 +110,15 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
                             $this->logger->warning('Payin7 callback - Imposible facturar el pedido.');
                         }
                         
+                        $this->logger->info('Payin7 BEFORE ORDER SAVE');
                         //Actualizamos el id de pedido en Payin7
                         $this->payin7->updateStoreOrderId($savedQuote->getTempId(), $quote->getId());
 
+                        $this->logger->info('Payin7 BEFORE SEND');
                         //Enviamos el email
                         $this->orderSender->send($order);
+
+                        $this->logger->info('Payin7 AFTER SAVE');
                     }
                     else {
                         $this->logger->warning('Payin7 callback - Error al crear el pedido.');
