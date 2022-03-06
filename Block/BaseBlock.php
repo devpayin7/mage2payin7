@@ -51,7 +51,12 @@ class BaseBlock extends \Magento\Framework\View\Element\Template {
                 if($installment['months'] > $months) {
                     $price = $installment['amount'];
                     $months = $installment['months'];
-                    $commission = $installment['commission'];
+
+                    $commission = 0;
+
+                    if (isset($installment['commission'])) {
+                        $commission = $installment['commission'];
+                    }
                     if(isset($installment['tin'])) {
                         $tin = $installment['tin'];
                     }
