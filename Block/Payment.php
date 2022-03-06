@@ -43,7 +43,13 @@ class Payment extends \Payin7\Mage2Payin7\Block\Product {
                 if(!empty($installment['default'])) {
                     $price = $installment['amount'];
                     $months = $installment['months'];
-                    $commission = $installment['commission'];
+
+                    $commission = 0;
+
+                    if (isset($installment['commission'])) {
+                        $commission = $installment['commission'];
+                    }
+
                     if(isset($installment['tin'])) {
                         $tin = $installment['tin'];
                     }
