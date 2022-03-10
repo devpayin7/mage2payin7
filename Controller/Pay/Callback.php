@@ -83,6 +83,15 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
                     $this->logger->info('Payin7 SAVED QUOTE1');
                     $quote->collectTotals()->save();
                     $this->logger->info('Payin7 SAVED QUOTE2');
+                    if (!$quote->getCustomerEmail()) {
+                        $email = 'guest@mage2.com';
+                        if ($quote->getBillingAddress()->getEmail()) {
+                            $email = $quote->getBillingAddress()->getEmail();
+                        }
+
+                        $quote->setCustomerEmail($email);
+                    }
+
                     $order = $this->quoteManagement->submit($quote);
                     $this->logger->info('Payin7 SAVED QUOTE3');
                     if($order->getIncrementId()) {
