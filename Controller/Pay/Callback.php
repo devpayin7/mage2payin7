@@ -80,10 +80,15 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
                     $this->logger->info('Payin7 SAVED QUOTE');
                     //Creamos el pedido
                     $quote->getPayment()->importData(['method' => 'mage2payin7']);
+                    $this->logger->info('Payin7 SAVED QUOTE1');
                     $quote->collectTotals()->save();
+                    $this->logger->info('Payin7 SAVED QUOTE2');
                     $order = $this->quoteManagement->submit($quote);
+                    $this->logger->info('Payin7 SAVED QUOTE3');
                     if($order->getIncrementId()) {
+                        $this->logger->info('Payin7 SAVED QUOTE4');
                         $order->setState('processing')->setStatus('processing');
+                        $this->logger->info('Payin7 SAVED QUOTE5');
                         //Creamos la factura
                         if($order->canInvoice()) {
                             $this->logger->info('Payin7 CREATE INVOICE');
