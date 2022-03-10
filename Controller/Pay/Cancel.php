@@ -2,7 +2,7 @@
 
 namespace Payin7\Mage2Payin7\Controller\Pay;
 
-class Cancel extends \Magento\Framework\App\Action\Action implements \Magento\Framework\App\Action\HttpPostActionInterface{
+class Cancel extends \Magento\Framework\App\Action\Action implements CsrfAwareActionInterface {
 
     const COOKIE_DURATION = 10 * 365 * 24 * 60 * 60;
     const COOKIE_NAME = 'payin7';
@@ -47,13 +47,17 @@ class Cancel extends \Magento\Framework\App\Action\Action implements \Magento\Fr
         return $this->_redirect('checkout');
     }
 
-    public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException
-    {
+    /**
+     * @inheritDoc
+     */
+    public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException {
         return null;
     }
 
-    public function validateForCsrf(RequestInterface $request): ?bool
-    {
+    /**
+     * @inheritDoc
+     */
+    public function validateForCsrf(RequestInterface $request): ?bool {
         return true;
     }
 }
