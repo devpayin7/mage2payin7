@@ -28,7 +28,7 @@
                     <input type="hidden" name="signature" value="" data-bind="attr: { value: getConfig('signature') }" />
                     <input type="hidden" name="ok_url" value="" data-bind="attr: { value: getUrl('payin7/pay/ok') + '?isAjax=true' }" />
                     <input type="hidden" name="nok_url" value="" data-bind="attr: { value: getUrl('payin7/pay/error') + '?isAjax=true' }" />
-                    <input type="hidden" name="cancelled_url" value="" data-bind="attr: { value: getUrl('payin7/pay/cancel') + '?isAjax=true&form_key' + jQuery('[name=form_key]').val() }" />
+                    <input type="hidden" name="cancelled_url" value="" data-bind="attr: { value: getUrl('payin7/pay/cancel') + '?isAjax=true&form_key=' + jQuery('[name=form_key]').val() }" />
                     <input type="hidden" name="callback_url" value="" data-bind="attr: { value: getUrl('payin7/pay/callback?isAjax=true') }" />
                     <input type="hidden" name="locale_code" value="" data-bind="attr: { value: noEmpty(window.checkoutConfig.defaultCountryId) }" />
                     <input type="hidden" name="sandbox_mode" value="" data-bind="attr: { value: getConfig('sandbox') }" />
