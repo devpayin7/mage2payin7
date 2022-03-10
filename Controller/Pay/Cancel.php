@@ -2,7 +2,7 @@
 
 namespace Payin7\Mage2Payin7\Controller\Pay;
 
-class Cancel extends \Magento\Framework\App\Action\Action {
+class Cancel extends \Magento\Framework\App\Action\Action implements \Magento\Framework\App\Action\HttpPostActionInterface{
 
     const COOKIE_DURATION = 10 * 365 * 24 * 60 * 60;
     const COOKIE_NAME = 'payin7';
@@ -22,7 +22,8 @@ class Cancel extends \Magento\Framework\App\Action\Action {
         parent::__construct($context);
     }
 
-    public function execute() {
+    public function execute(): \Magento\Framework\Controller\ResultInterface|ResponseInterface
+    {
         if($this->_request->getParam('order_state') == 'rejected') {
             $metadata = $this->_cookieMetadataFactory
                 ->createPublicCookieMetadata()
