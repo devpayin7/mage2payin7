@@ -89,6 +89,7 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
                             $email = $quote->getBillingAddress()->getEmail();
                         }
 
+                        $this->logger->info('Payin7 SET EMAIL ' . $email);
                         $quote->setCustomerEmail($email);
                     }
 
