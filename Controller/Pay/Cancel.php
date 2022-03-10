@@ -22,7 +22,7 @@ class Cancel extends \Magento\Framework\App\Action\Action implements \Magento\Fr
         parent::__construct($context);
     }
 
-    public function execute(): \Magento\Framework\Controller\ResultInterface|ResponseInterface
+    public function execute()
     {
         if($this->_request->getParam('order_state') == 'rejected') {
             $metadata = $this->_cookieMetadataFactory
