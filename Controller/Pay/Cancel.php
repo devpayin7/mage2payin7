@@ -47,4 +47,13 @@ class Cancel extends \Magento\Framework\App\Action\Action implements \Magento\Fr
         return $this->_redirect('checkout');
     }
 
+    public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException
+    {
+        return null;
+    }
+
+    public function validateForCsrf(RequestInterface $request): ?bool
+    {
+        return true;
+    }
 }
