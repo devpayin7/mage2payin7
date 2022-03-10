@@ -1,0 +1,161 @@
+<div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
+        <label class="label" data-bind="attr: {'for': getCode()}">
+            <span data-bind="text: getTitle()"></span>
+        </label>
+    </div>
+
+    <div class="payment-method-content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        
+        <div data-bind="html: getConfig('calculator_block')"></div>
+
+        <div class="actions-toolbar">
+            <div class="primary">
+                <form action="" method="post" id="imaxpayin7form" data-bind="attr: { action: getConfig('payin7_url') }, event: { submit: showByeMessage }">
+                    <input type="hidden" name="account_id" value="" data-bind="attr: { value: getConfig('integration_id') }" />
+                    <input type="hidden" name="signature" value="" data-bind="attr: { value: getConfig('signature') }" />
+                    <input type="hidden" name="ok_url" value="" data-bind="attr: { value: getUrl('payin7/pay/ok') + '?isAjax=true' }" />
+                    <input type="hidden" name="nok_url" value="" data-bind="attr: { value: getUrl('payin7/pay/error') + '?isAjax=true' }" />
+                    <input type="hidden" name="cancelled_url" value="" data-bind="attr: { value: getUrl('payin7/pay/cancel') + '?isAjax=true&form_key=' }" />
+                    <input type="hidden" name="callback_url" value="" data-bind="attr: { value: getUrl('payin7/pay/callback?isAjax=true&form_key=' + jQuery(\'[name=form_key]\').val() ) }" />
+                    <input type="hidden" name="locale_code" value="" data-bind="attr: { value: noEmpty(window.checkoutConfig.defaultCountryId) }" />
+                    <input type="hidden" name="sandbox_mode" value="" data-bind="attr: { value: getConfig('sandbox') }" />
+                    <input type="hidden" name="store_data" value="" data-bind="attr: { value: getConfig('payin7_quote_id') }" />
+                    <input type="hidden" name="order[id]" value="" data-bind="attr: { value: getConfig('payin7_order_id') }" />
+                    <input type="hidden" name="order[payment_method]" value="installments" />
+                    <input type="hidden" name="order[currency_code]" value="" data-bind="attr: { value: getQuoteTotals('base_currency_code') }" />
+                    <input type="hidden" name="order[shipping_method_code]" value="" data-bind="attr: { value: noEmpty(getShippingMethod() ? getShippingMethod().carrier_code : '') }" />
+                    <input type="hidden" name="order[shipping_method_title]" value="" data-bind="attr: { value: noEmpty(getShippingMethod() ? getShippingMethod().carrier_title : '') }" />
+                    <input type="hidden" name="order[subtotal_with_tax]" value="" data-bind="attr: { value: parseFloat(getQuoteTotals('grand_total')).toFixed(4) }" />
+                    <input type="hidden" name="order[subtotal]" value="" data-bind="attr: { value: parseFloat(getQuoteTotals('base_grand_total')).toFixed(4) }" />
+                    <input type="hidden" name="order[tax]" value="" data-bind="attr: { value: parseFloat(getQuoteTotals('grand_total') - getQuoteTotals('base_grand_total')).toFixed(4) }" />
+                    <input type="hidden" name="order[shipping_with_tax]" value="" data-bind="attr: { value: (getShippingMethod() ? getShippingMethod().amount : 0) }" />
+                    <input type="hidden" name="order[shipping]" value="" data-bind="attr: { value: (getShippingMethod() ? getShippingMethod().base_amount : 0) }" />
+                    <input type="hidden" name="order[discount]" value="" data-bind="attr: { value: parseFloat(getQuoteTotals('subtotal') - getQuoteTotals('subtotal_with_discount')).toFixed(4) }" />
+                    <input type="hidden" name="order[shipping_discount]" value="0" />
+                    <input type="hidden" name="order[total]" value="" data-bind="attr: { value: parseFloat(getQuoteTotals('grand_total')).toFixed(4) }" />
+                    <input type="hidden" name="order[total_items]" value="" data-bind="attr: { value: window.checkoutConfig.quoteItemData.length }" />
+                    <input type="hidden" name="customer[id]" value="" data-bind="attr: { value: noEmpty(window.checkoutConfig.customerData.id) }" />
+                    <input type="hidden" name="customer[guest]" value="" data-bind="attr: { value: (window.checkoutConfig.isCustomerLoggedIn ? '0' : '1') }" />
+                    <input type="hidden" name="customer[username]" value="" data-bind="attr: { value: noEmpty(window.checkoutConfig.customerData.email ? window.checkoutConfig.customerData.email : getGuestEmail()) }" />
+                    <input type="hidden" name="customer[created_on]" value="" data-bind="attr: { value: window.checkoutConfig.customerData.created_at ? window.checkoutConfig.customerData.created_at : '1970-01-01' }" />
+                    <input type="hidden" name="customer[locale_code]" value="" data-bind="attr: { value: getConfig('locale') }" />
+                    <input type="hidden" name="customer[birthdate]" value="" data-bind="attr: { value: ( window.checkoutConfig.customerData.dob ? window.checkoutConfig.customerData.dob : '1970-01-01') }" />
+                    <input type="hidden" name="customer[email]" value="" data-bind="attr: { value: noEmpty(window.checkoutConfig.customerData.email ? window.checkoutConfig.customerData.email : getGuestEmail()) }" />
+                    <input type="hidden" name="customer[title]" value="XXXXX" />
+                    <input type="hidden" name="customer[prefix]" value="" data-bind="attr: { value: noEmpty(window.checkoutConfig.customerData.prefix) }" />
+                    <input type="hidden" name="customer[suffix]" value="" data-bind="attr: { value: noEmpty(window.checkoutConfig.customerData.suffix) }" />
+                    <input type="hidden" name="customer[first_name]" value="" data-bind="attr: { value: noEmpty(window.checkoutConfig.customerData.firstname ? window.checkoutConfig.customerData.firstname : getBilling('firstname')) }" />
+                    <input type="hidden" name="customer[middle_name]" value="" data-bind="attr: { value: noEmpty(window.checkoutConfig.customerData.middlename ? window.checkoutConfig.customerData.middlename : getBilling('middlename')) }" />
+                    <input type="hidden" name="customer[last_name]" value="" data-bind="attr: { value: noEmpty(window.checkoutConfig.customerData.lastname ? window.checkoutConfig.customerData.lastname : getBilling('lastname')) }" />
+                    <input type="hidden" name="customer[company_name]" value="" data-bind="attr: { value: getBilling('company') }" />
+                    <input type="hidden" name="customer[gender]" value="" data-bind="attr: { value: getGender() }" />
+                    <input type="hidden" name="customer[telephone1]" value="" data-bind="attr: { value: getBilling('telephone') }" />
+                    <input type="hidden" name="customer[telephone2]" value="XXXXX" />
+                    <input type="hidden" name="customer[telephone3]" value="XXXXX" />
+                    <input type="hidden" name="customer[fax]" value="XXXXX" />
+                    <input type="hidden" name="customer[vat_number]" value="" data-bind="attr: { value: getBilling('vatId') }" />
+                    <input type="hidden" name="customer[document_number]" value="" data-bind="attr: { value: getBilling('vatId') }" />
+                    <input type="hidden" name="customer[document_type]" value="XXXXX" />
+                    <input type="hidden" name="addresses[0][id]" value="" data-bind="attr: { value: getBilling('customerAddressId') }" />
+                    <input type="hidden" name="addresses[0][type]" value="billing" />
+                    <input type="hidden" name="addresses[0][title]" value="XXXXX" />
+                    <input type="hidden" name="addresses[0][prefix]" value="" data-bind="attr: { value: getBilling('prefix') }" />
+                    <input type="hidden" name="addresses[0][suffix]" value="" data-bind="attr: { value: getBilling('suffix') }" />
+                    <input type="hidden" name="addresses[0][first_name]" value="" data-bind="attr: { value: getBilling('firstname') }" />
+                    <input type="hidden" name="addresses[0][middle_name]" value="" data-bind="attr: { value: getBilling('middlename') }" />
+                    <input type="hidden" name="addresses[0][last_name]" value="" data-bind="attr: { value: getBilling('lastname') }" />
+                    <input type="hidden" name="addresses[0][company_name]" value="" data-bind="attr: { value: getBilling('company') }" />
+                    <input type="hidden" name="addresses[0][street_address_1]" value="" data-bind="attr: { value: noEmpty(getBilling('street')[0]) }" />
+                    <input type="hidden" name="addresses[0][street_address_2]" value="" data-bind="attr: { value: noEmpty(getBilling('street')[1]) }" />
+                    <input type="hidden" name="addresses[0][street_address_3]" value="" data-bind="attr: { value: noEmpty(getBilling('street')[2]) }" />
+                    <input type="hidden" name="addresses[0][street_address_4]" value="" data-bind="attr: { value: noEmpty(getBilling('street')[3]) }" />
+                    <input type="hidden" name="addresses[0][city]" value="" data-bind="attr: { value: getBilling('city') }" />
+                    <input type="hidden" name="addresses[0][country_code]" value="" data-bind="attr: { value: getBilling('countryId') }" />
+                    <input type="hidden" name="addresses[0][state]" value="" data-bind="attr: { value: getBilling('region') }" />
+                    <input type="hidden" name="addresses[0][region]" value="" data-bind="attr: { value: getBilling('region') }" />
+                    <input type="hidden" name="addresses[0][region_code]" value="" data-bind="attr: { value: getBilling('regionCode') }" />
+                    <input type="hidden" name="addresses[0][zip_code]" value="" data-bind="attr: { value: getBilling('postcode') }" />
+                    <input type="hidden" name="addresses[0][telephone1]" value="" data-bind="attr: { value: getBilling('telephone') }" />
+                    <input type="hidden" name="addresses[0][telephone2]" value="XXXXX" />
+                    <input type="hidden" name="addresses[0][telephone3]" value="XXXXX" />
+                    <input type="hidden" name="addresses[0][fax]" value="XXXXX" />
+                    <input type="hidden" name="addresses[0][vat_number]" value="" data-bind="attr: { value: getBilling('vatId') }" />
+                    <input type="hidden" name="addresses[1][id]" value="" data-bind="attr: { value: getShipping('customerAddressId') }" />
+                    <input type="hidden" name="addresses[1][type]" value="shipping" />
+                    <input type="hidden" name="addresses[1][title]" value="XXXXX" />
+                    <input type="hidden" name="addresses[1][prefix]" value="" data-bind="attr: { value: getShipping('prefix') }" />
+                    <input type="hidden" name="addresses[1][suffix]" value="" data-bind="attr: { value: getShipping('suffix') }" />
+                    <input type="hidden" name="addresses[1][first_name]" value="" data-bind="attr: { value: getShipping('firstname') }" />
+                    <input type="hidden" name="addresses[1][middle_name]" value="" data-bind="attr: { value: getShipping('middlename') }" />
+                    <input type="hidden" name="addresses[1][last_name]" value="" data-bind="attr: { value: getShipping('lastname') }" />
+                    <input type="hidden" name="addresses[1][company_name]" value="" data-bind="attr: { value: getShipping('company') }" />
+                    <input type="hidden" name="addresses[1][street_address_1]" value="" data-bind="attr: { value: noEmpty(getShipping('street')[0]) }" />
+                    <input type="hidden" name="addresses[1][street_address_2]" value="" data-bind="attr: { value: noEmpty(getShipping('street')[1]) }" />
+                    <input type="hidden" name="addresses[1][street_address_3]" value="" data-bind="attr: { value: noEmpty(getShipping('street')[2]) }" />
+                    <input type="hidden" name="addresses[1][street_address_4]" value="" data-bind="attr: { value: noEmpty(getShipping('street')[3]) }" />
+                    <input type="hidden" name="addresses[1][city]" value="" data-bind="attr: { value: getShipping('city') }" />
+                    <input type="hidden" name="addresses[1][country_code]" value="" data-bind="attr: { value: getShipping('countryId') }" />
+                    <input type="hidden" name="addresses[1][state]" value="" data-bind="attr: { value: getShipping('region') }" />
+                    <input type="hidden" name="addresses[1][region]" value="" data-bind="attr: { value: getShipping('region') }" />
+                    <input type="hidden" name="addresses[1][region_code]" value="" data-bind="attr: { value: getShipping('regionCode') }" />
+                    <input type="hidden" name="addresses[1][zip_code]" value="" data-bind="attr: { value: getShipping('postcode') }" />
+                    <input type="hidden" name="addresses[1][telephone1]" value="" data-bind="attr: { value: getShipping('telephone') }" />
+                    <input type="hidden" name="addresses[1][telephone2]" value="XXXXX" />
+                    <input type="hidden" name="addresses[1][telephone3]" value="XXXXX" />
+                    <input type="hidden" name="addresses[1][fax]" value="XXXXX" />
+                    <input type="hidden" name="addresses[1][vat_number]" value="" data-bind="attr: { value: getShipping('vatId') }" />
+                    <!-- ko foreach: window.checkoutConfig.quoteItemData -->
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][item_id]', value: $data.item_id }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][product_id]', value: $data.product_id }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][name]', value: $parent.noEmpty($data.name) }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][url]', value: $parent.getUrl($data.product.request_path) }" />
+                    <input type="hidden" name="" value="XXXXX" data-bind="attr: { name: 'items[' + $index() + '][details]' }" />
+                    <input type="hidden" name="" value="XXXXX" data-bind="attr: { name: 'items[' + $index() + '][details_full]' }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][sku]', value: $data.sku }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][image_url]', value: $data.thumbnail }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][virtual]', value: $data.is_virtual }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][quantity]', value: $data.qty }" />
+                    <input type="hidden" name="" value="0" data-bind="attr: { name: 'items[' + $index() + '][quantity_decimal]' }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][item_subtotal_with_tax]', value: $data.row_total_incl_tax }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][item_subtotal]', value: $data.row_total }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][item_tax_rate]', value: $data.tax_percent }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][item_tax]', value: $data.tax_amount }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][item_tax_before_discount]', value: ($data.tax_before_discount ? $data.tax_before_discount : 0) }" />
+                    <input type="hidden" name="" value="0" data-bind="attr: { name: 'items[' + $index() + '][item_shipping_with_tax]' }" />
+                    <input type="hidden" name="" value="0" data-bind="attr: { name: 'items[' + $index() + '][item_shipping]' }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][item_total_before_discount]', value: $data.price * $data.qty }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][item_discount]', value: $data.base_discount_amount }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][item_discount_with_tax]', value: $data.base_discount_tax_compensation_amount }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][item_total]', value: $data.row_total }" />
+                    <input type="hidden" name="" value="" data-bind="attr: { name: 'items[' + $index() + '][item_total_with_tax]', value: $data.row_total_incl_tax }" />
+                    <!--/ko-->
+                    <button class="action primary checkout"
+                            type="submit"
+                            data-bind="attr: {title: $t('Place Order')}
+                            ">
+                        <span data-bind="i18n: 'Place Order'"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="payin7Overlay" style="display: none"></div>
+    <div id="payin7ByeMessage" style="display: none">
+        <p data-bind="text: getConfig('textoDespedida')"></p>
+        <img data-bind="attr: { src: require.toUrl('Payin7_Mage2Payin7/images/logo_calculadora.png') }" alt=""/>
+    </div>
+</div>
