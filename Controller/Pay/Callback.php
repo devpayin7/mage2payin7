@@ -37,7 +37,7 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
         \Payin7\Mage2Payin7\Model\SavedQuoteFactory $savedQuoteFactory,
         \Psr\Log\LoggerInterface $logger,
         \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender,
-        \Magento\Checkout\Model\Session $checkoutSession,
+        SessionManagerInterface $checkoutSession,
         CustomerCart $cart
     ) {
         $this->checkoutSession = $checkoutSession;
@@ -161,6 +161,10 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
                         }
 
                         Mage::getSingleton(‘checkout/session’)->clear();
+
+                        $this->checkoutSession->clearQuote();
+                        $this->checkoutSession->clearStorage();
+                        $this->checkoutSession->restoreQuote();
 
                         $this->logger->info('Payin7 AFTER REMOVE ITEMS');
 
