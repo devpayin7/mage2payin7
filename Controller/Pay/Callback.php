@@ -12,18 +12,25 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
             $savedQuoteFactory, $logger, $invoiceSender;
 
     public function __construct(
-            \Magento\Framework\App\Action\Context $context,
-            \Magento\Quote\Model\QuoteFactory $quoteFactory,
-            \Magento\Quote\Model\QuoteManagement $quoteManagement,
-            \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender,
-            \Payin7\Mage2Payin7\Helper\Payin7 $payin7,
-            \Magento\Sales\Model\Service\InvoiceService $invoiceService,
-            \Magento\Framework\DB\Transaction $transaction,
-            \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-            \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
-            \Payin7\Mage2Payin7\Model\SavedQuoteFactory $savedQuoteFactory,
-            \Psr\Log\LoggerInterface $logger,
-            \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender) {
+        \Magento\Framework\App\Action\Context $context,
+        \Magento\Framework\Data\Form\FormKey $formKey,
+        \Magento\Framework\App\Request\Http $request,
+        \Magento\Quote\Model\QuoteFactory $quoteFactory,
+        \Magento\Quote\Model\QuoteManagement $quoteManagement,
+        \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender,
+        \Payin7\Mage2Payin7\Helper\Payin7 $payin7,
+        \Magento\Sales\Model\Service\InvoiceService $invoiceService,
+        \Magento\Framework\DB\Transaction $transaction,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
+        \Payin7\Mage2Payin7\Model\SavedQuoteFactory $savedQuoteFactory,
+        \Psr\Log\LoggerInterface $logger,
+        \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender
+    ) {
+
+        $this->request = $request;
+        $this->formKey = $formKey;
+        $this->request->setParam('form_key', $this->formKey->getFormKey());
         parent::__construct($context);    
         
         $this->_quoteFactory = $quoteFactory;

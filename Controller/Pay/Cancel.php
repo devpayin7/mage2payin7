@@ -13,16 +13,22 @@ class Cancel extends \Magento\Framework\App\Action\Action implements CsrfAwareAc
     protected $_pageFactory, $_cookieManager, $_cookieMetadataFactory, $savedQuoteFactory, $checkoutSession;
 
     public function __construct(
-            \Magento\Framework\App\Action\Context $context,
-            \Magento\Framework\Stdlib\CookieManagerInterface $cookieManager,
-            \Magento\Framework\Stdlib\Cookie\CookieMetadataFactory $cookieMetadataFactory,
-            \Payin7\Mage2Payin7\Model\SavedQuoteFactory $savedQuoteFactory,
-            \Magento\Checkout\Model\Session $checkoutSession) {
-        $this->_cookieManager = $cookieManager;
-        $this->_cookieMetadataFactory = $cookieMetadataFactory;
-        $this->savedQuoteFactory = $savedQuoteFactory;
-        $this->checkoutSession = $checkoutSession;
-        parent::__construct($context);
+        \Magento\Framework\App\Action\Context $context,
+        \Magento\Framework\Data\Form\FormKey $formKey,
+        \Magento\Framework\App\Request\Http $request
+        \Magento\Framework\Stdlib\CookieManagerInterface $cookieManager,
+        \Magento\Framework\Stdlib\Cookie\CookieMetadataFactory $cookieMetadataFactory,
+        \Payin7\Mage2Payin7\Model\SavedQuoteFactory $savedQuoteFactory,
+        \Magento\Checkout\Model\Session $checkoutSession
+    ) {
+            $this->request = $request;
+            $this->formKey = $formKey;
+            $this->request->setParam('form_key', $this->formKey->getFormKey());
+            $this->_cookieManager = $cookieManager;
+            $this->_cookieMetadataFactory = $cookieMetadataFactory;
+            $this->savedQuoteFactory = $savedQuoteFactory;
+            $this->checkoutSession = $checkoutSession;
+            parent::__construct($context);
     }
 
     public function execute()
