@@ -171,7 +171,7 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
 
                         $resultRedirect = $this->resultRedirectFactory->create();
                         $resultRedirect->setPath('checkout/onepage/success');
-
+                        $this->_redirect('checkout');
                         return $resultRedirect;
                     }
                     else {
