@@ -156,11 +156,12 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
 
                         $this->logger->info('Payin7 AFTER SAVE');
 
-                        $allItems = $this->checkoutSession->getQuote()->getAllVisibleItems();
-                        foreach ($allItems as $item) {
-                            $itemId = $item->getItemId();
-                            $this->cart->removeItem($itemId)->save();
+                        foreach ($quote->getAllItems() as $item) {
+                            $this->logger->info('Payin7 ITEM REMOVED');
+                            $quote->removeItem($item->getId());
                         }
+
+                        $this->logger->info('Payin7 AFTER REMOVE ITEMS');
                     }
                     else {
                         $this->logger->warning('Payin7 callback - Error al crear el pedido.');
