@@ -31,6 +31,15 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
         $this->request = $request;
         $this->formKey = $formKey;
         $this->request->setParam('form_key', $this->formKey->getFormKey());
+
+        if (interface_exists("\Magento\Framework\App\CsrfAwareActionInterface")) {
+            $request = $this->getRequest();
+            if ($request instanceof HttpRequest && $request->isPost() && empty($request->getParam('form_key'))) {
+                $formKey = $this->_objectManager->get(\Magento\Framework\Data\Form\FormKey::class);
+                $request->setParam('form_key', $formKey->getFormKey());
+            }
+        }
+        
         parent::__construct($context);    
         
         $this->_quoteFactory = $quoteFactory;
