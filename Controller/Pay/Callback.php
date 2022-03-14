@@ -162,6 +162,11 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
                         }
 
                         $this->logger->info('Payin7 AFTER REMOVE ITEMS');
+
+                        $resultRedirect = $this->resultRedirectFactory->create();
+                        $resultRedirect->setPath('checkout/onepage/success');
+
+                        return $resultRedirect;
                     }
                     else {
                         $this->logger->warning('Payin7 callback - Error al crear el pedido.');
