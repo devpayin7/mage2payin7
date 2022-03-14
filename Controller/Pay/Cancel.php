@@ -15,7 +15,7 @@ class Cancel extends \Magento\Framework\App\Action\Action implements CsrfAwareAc
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\Data\Form\FormKey $formKey,
-        \Magento\Framework\App\Request\Http $request
+        \Magento\Framework\App\Request\Http $request,
         \Magento\Framework\Stdlib\CookieManagerInterface $cookieManager,
         \Magento\Framework\Stdlib\Cookie\CookieMetadataFactory $cookieMetadataFactory,
         \Payin7\Mage2Payin7\Model\SavedQuoteFactory $savedQuoteFactory,
