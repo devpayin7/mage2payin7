@@ -5,6 +5,7 @@ namespace Payin7\Mage2Payin7\Controller\Pay;
 use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Request\InvalidRequestException;
+use Magento\Checkout\Model\Cart as CustomerCart;
 
 class Callback extends \Magento\Framework\App\Action\Action implements CsrfAwareActionInterface {
 
