@@ -11,6 +11,16 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
     protected $_quoteFactory, $quoteManagement, $orderSender, $payin7, $_invoiceService, $_transaction, $scopeConfig, $_transportBuilder, 
             $savedQuoteFactory, $logger, $invoiceSender;
 
+    /**
+     * @var \Magento\Checkout\Model\Session
+     */
+    protected $checkoutSession;
+
+    /**
+     * @var \Magento\Checkout\Model\Cart
+     */
+    protected $cart;
+
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\Data\Form\FormKey $formKey,
@@ -25,9 +35,12 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
         \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
         \Payin7\Mage2Payin7\Model\SavedQuoteFactory $savedQuoteFactory,
         \Psr\Log\LoggerInterface $logger,
-        \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender
+        \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender,
+        \Magento\Checkout\Model\Session $checkoutSession,
+        CustomerCart $cart
     ) {
-
+        $this->checkoutSession = $checkoutSession;
+        $this->cart = $cart;
         $this->request = $request;
         $this->formKey = $formKey;
         $this->request->setParam('form_key', $this->formKey->getFormKey());
@@ -39,7 +52,7 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
                 $request->setParam('form_key', $formKey->getFormKey());
             }
         }
-        
+
         parent::__construct($context);    
         
         $this->_quoteFactory = $quoteFactory;
@@ -88,24 +101,19 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
             $savedQuote->load($quote->getId());
             
             if($order_state == 'active') {
-                $this->logger->info('Payin7 ON ACTIVE');
                 if($quote->getIsActive() && !$savedQuote->getCreatingOrder()) {
                     $savedQuote->setCreatingOrder(1);
                     $savedQuote->save();
                     
-                    $this->logger->info('Payin7 SAVED QUOTE');
                     //Creamos el pedido
                     $quote->getPayment()->importData(['method' => 'mage2payin7']);
-                    $this->logger->info('Payin7 SAVED QUOTE1');
                     $quote->collectTotals()->save();
-                    $this->logger->info('Payin7 SAVED QUOTE2');
                     if (!$quote->getCustomerEmail()) {
                         $email = 'guest@mage2.com';
                         if ($quote->getBillingAddress()->getEmail()) {
                             $email = $quote->getBillingAddress()->getEmail();
                         }
 
-                        $this->logger->info('Payin7 SET EMAIL ' . $email);
                         $quote->setCustomerEmail($email);
                         $quote->setCustomerFirstname($quote->getBillingAddress()->getFirstname());
                         $quote->setCustomerLastname($quote->getBillingAddress()->getLastname());
@@ -113,14 +121,11 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
                     }
 
                     $order = $this->quoteManagement->submit($quote);
-                    $this->logger->info('Payin7 SAVED QUOTE3');
+
                     if($order->getIncrementId()) {
-                        $this->logger->info('Payin7 SAVED QUOTE4');
                         $order->setState('processing')->setStatus('processing');
-                        $this->logger->info('Payin7 SAVED QUOTE5');
                         //Creamos la factura
                         if($order->canInvoice()) {
-                            $this->logger->info('Payin7 CREATE INVOICE');
                             $invoice = $this->_invoiceService->prepareInvoice($order);
                             $invoice->register();
                             $invoice->save();
@@ -130,9 +135,7 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
                                 $invoice->getOrder()
                             );
                             $transactionSave->save();
-                            $this->logger->info('Payin7 TRANSACTION SAVE');
                             $this->invoiceSender->send($invoice);
-                            $this->logger->info('Payin7 AFTER TRANSACTION SAVE');
                             //send notification code
                             $order->addStatusHistoryComment(
                                 __('Notified customer about invoice #%1.', $invoice->getId())
@@ -144,15 +147,19 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
                             $this->logger->warning('Payin7 callback - Imposible facturar el pedido.');
                         }
                         
-                        $this->logger->info('Payin7 BEFORE ORDER SAVE');
                         //Actualizamos el id de pedido en Payin7
                         $this->payin7->updateStoreOrderId($savedQuote->getTempId(), $quote->getId());
 
-                        $this->logger->info('Payin7 BEFORE SEND');
                         //Enviamos el email
                         $this->orderSender->send($order);
 
                         $this->logger->info('Payin7 AFTER SAVE');
+
+                        $allItems = $this->checkoutSession->getQuote()->getAllVisibleItems();
+                        foreach ($allItems as $item) {
+                            $itemId = $item->getItemId();
+                            $this->cart->removeItem($itemId)->save();
+                        }
                     }
                     else {
                         $this->logger->warning('Payin7 callback - Error al crear el pedido.');
