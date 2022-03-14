@@ -156,10 +156,11 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
 
                         $this->logger->info('Payin7 AFTER SAVE');
 
-                        foreach ($quote->getAllItems() as $item) {
-                            $this->logger->info('Payin7 ITEM REMOVED');
-                            $quote->removeItem($item->getId());
+                        foreach( Mage::getSingleton('checkout/session')->getQuote()->getItemsCollection() as $item ){
+                            Mage::getSingleton('checkout/cart')->removeItem( $item->getId() )->save();
                         }
+
+                        Mage::getSingleton(‘checkout/session’)->clear();
 
                         $this->logger->info('Payin7 AFTER REMOVE ITEMS');
 
