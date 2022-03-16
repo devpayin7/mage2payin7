@@ -5,15 +5,30 @@ namespace Payin7\Mage2Payin7\Controller\Pay;
 use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Request\InvalidRequestException;
+use Magento\Checkout\Model\Cart as CustomerCart;
 
 class Ok extends \Magento\Framework\App\Action\Action implements CsrfAwareActionInterface
 {
     protected $_pageFactory;
 
+    /**
+     * @var \Magento\Checkout\Model\Session
+     */
+    protected $checkoutSession;
+
+    /**
+     * @var \Magento\Checkout\Model\Cart
+     */
+    protected $cart;
+
     public function __construct(
             \Magento\Framework\App\Action\Context $context,
-            \Magento\Framework\View\Result\PageFactory $pageFactory) {
+            \Magento\Framework\View\Result\PageFactory $pageFactory,
+            SessionManagerInterface $checkoutSession,
+            CustomerCart $cart) {
         $this->_pageFactory = $pageFactory;
+        $this->checkoutSession = $checkoutSession;
+        $this->cart = $cart;
         parent::__construct($context);
     }
 
@@ -32,6 +47,20 @@ class Ok extends \Magento\Framework\App\Action\Action implements CsrfAwareAction
     }
 
     public function execute() {
+        foreach( Mage::getSingleton('checkout/session')->getQuote()->getItemsCollection() as $item ){
+            Mage::getSingleton('checkout/cart')->removeItem( $item->getId() )->save();
+        }
+
+        Mage::getSingleton(‘checkout/session’)->clear();
+
+        $this->checkoutSession->clearQuote();
+        $this->checkoutSession->clearStorage();
+        $this->checkoutSession->restoreQuote();
+
+        $resultRedirect = $this->resultRedirectFactory->create();
+        $resultRedirect->setPath('checkout/onepage/success');
+        $this->_redirect('checkout');
+
         return $this->_pageFactory->create();
     }
 
