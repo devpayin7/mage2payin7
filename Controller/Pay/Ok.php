@@ -6,6 +6,7 @@ use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Request\InvalidRequestException;
 use Magento\Checkout\Model\Cart as CustomerCart;
+use Magento\Framework\Session\SessionManagerInterface;
 
 class Ok extends \Magento\Framework\App\Action\Action implements CsrfAwareActionInterface
 {
