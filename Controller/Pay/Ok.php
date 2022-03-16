@@ -48,12 +48,6 @@ class Ok extends \Magento\Framework\App\Action\Action implements CsrfAwareAction
     }
 
     public function execute() {
-        foreach( Mage::getSingleton('checkout/session')->getQuote()->getItemsCollection() as $item ){
-            Mage::getSingleton('checkout/cart')->removeItem( $item->getId() )->save();
-        }
-
-        Mage::getSingleton(‘checkout/session’)->clear();
-
         $this->checkoutSession->clearQuote();
         $this->checkoutSession->clearStorage();
         $this->checkoutSession->restoreQuote();
@@ -61,6 +55,7 @@ class Ok extends \Magento\Framework\App\Action\Action implements CsrfAwareAction
         $resultRedirect = $this->resultRedirectFactory->create();
         $resultRedirect->setPath('checkout/onepage/success');
         $this->_redirect('checkout');
+        return $resultRedirect;
 
         return $this->_pageFactory->create();
     }
