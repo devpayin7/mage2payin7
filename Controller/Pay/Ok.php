@@ -48,10 +48,6 @@ class Ok extends \Magento\Framework\App\Action\Action implements CsrfAwareAction
     }
 
     public function execute() {
-        $this->checkoutSession->clearQuote();
-        $this->checkoutSession->clearStorage();
-        $this->checkoutSession->restoreQuote();
-
         $resultRedirect = $this->resultRedirectFactory->create();
         $resultRedirect->setPath('checkout/onepage/success');
         $this->_redirect('checkout');

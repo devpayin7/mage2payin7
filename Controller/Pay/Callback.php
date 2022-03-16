@@ -156,11 +156,6 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
                         $this->orderSender->send($order);
 
                         $this->logger->info('Payin7 AFTER SAVE');
-
-                        $this->checkoutSession->clearQuote();
-                        $this->checkoutSession->clearStorage();
-                        $this->checkoutSession->restoreQuote();
-
                         $this->logger->info('Payin7 AFTER REMOVE ITEMS');
 
                         $resultRedirect = $this->resultRedirectFactory->create();
