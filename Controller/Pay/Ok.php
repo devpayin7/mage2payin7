@@ -48,9 +48,13 @@ class Ok extends \Magento\Framework\App\Action\Action implements CsrfAwareAction
     }
 
     public function execute() {
-        $this->_redirect('checkout/onepage/success');
+        $resultRedirect = $this->resultRedirectFactory->create();
+        $resultRedirect->setPath('checkout/onepage/success');
+        return $resultRedirect;
 
-        return $this->_pageFactory->create();
+        // $this->_redirect('checkout/onepage/success');
+
+        // return $this->_pageFactory->create();
     }
 
 }
