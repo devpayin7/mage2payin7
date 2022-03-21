@@ -60,6 +60,8 @@ class Cancel extends \Magento\Framework\App\Action\Action implements CsrfAwareAc
 
         $this->checkoutSession->restoreQuote();
 
+        $this->checkoutSession->getQuote()->setIsActive(false);
+        $this->checkoutSession->getQuote()->save();
         //Cambiamos el temp id para evitar bloqueos en Payin7
         // $savedQuote = $this->savedQuoteFactory->create();
         // $savedQuote->load($this->checkoutSession->getQuote()->getId());
