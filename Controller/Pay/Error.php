@@ -23,7 +23,7 @@ class Error extends \Magento\Framework\App\Action\Action implements CsrfAwareAct
     }
 
     public function execute() {
-        return $this->_redirect('checkout');
+        $this->_redirect('checkout/cart');
     }
 
 }
