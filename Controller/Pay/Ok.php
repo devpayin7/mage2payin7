@@ -28,11 +28,6 @@ class Ok extends \Magento\Framework\App\Action\Action implements CsrfAwareAction
         SessionManagerInterface $checkoutSession,
         CustomerCart $cart
     ) {
-        ini_set('session.cookie_secure', "1"); 
-        ini_set('session.cookie_httponly', "1"); 
-        ini_set('session.cookie_samesite', 'None'); 
-        session_start();
-
         $this->_pageFactory = $pageFactory;
         $this->checkoutSession = $checkoutSession;
         $this->cart = $cart;
