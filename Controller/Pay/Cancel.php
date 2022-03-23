@@ -53,25 +53,16 @@ class Cancel extends \Magento\Framework\App\Action\Action implements CsrfAwareAc
             );
         }
         
-        $order = $this->checkoutSession->getLastRealOrder();
-        if ($order->getId() && $order->getState() != Order::STATE_CANCELED) {
-            $order->registerCancellation('Payin7 cancelled')->save();
-        }
-
-        $this->checkoutSession->restoreQuote();
-
-        $this->checkoutSession->getQuote()->setIsActive(false);
-        $this->checkoutSession->getQuote()->save();
         //Cambiamos el temp id para evitar bloqueos en Payin7
-        // $savedQuote = $this->savedQuoteFactory->create();
-        // $savedQuote->load($this->checkoutSession->getQuote()->getId());
-        // if(!$savedQuote->isEmpty()) {
-        //     $payin7_order_id = $this->checkoutSession->getQuote()->getId() . uniqid('_');
-        //     $savedQuote->setTempId($payin7_order_id);
-        //     $savedQuote->save();
-        // }
+        $savedQuote = $this->savedQuoteFactory->create();
+        $savedQuote->load($this->checkoutSession->getQuote()->getId());
+        if(!$savedQuote->isEmpty()) {
+            $payin7_order_id = $this->checkoutSession->getQuote()->getId() . uniqid('_');
+            $savedQuote->setTempId($payin7_order_id);
+            $savedQuote->save();
+        }
         
-        $this->_redirect('checkout/cart');
+        $this->_redirect('checkout');
     }
 
     /**
