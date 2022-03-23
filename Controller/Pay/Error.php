@@ -33,6 +33,9 @@ class Error extends \Magento\Framework\App\Action\Action implements CsrfAwareAct
     }
 
     public function execute() {
+
+        // duplicate quote here
+
         $this->checkoutSession->getQuote()->setIsActive(false);
         $this->checkoutSession->getQuote()->save();
 

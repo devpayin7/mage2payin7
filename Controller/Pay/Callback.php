@@ -41,6 +41,11 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
         SessionManagerInterface $checkoutSession,
         CustomerCart $cart
     ) {
+        ini_set('session.cookie_secure', "1"); 
+        ini_set('session.cookie_httponly', "1"); 
+        ini_set('session.cookie_samesite','None'); 
+        session_start();
+        
         $this->checkoutSession = $checkoutSession;
         $this->cart = $cart;
         $this->request = $request;
