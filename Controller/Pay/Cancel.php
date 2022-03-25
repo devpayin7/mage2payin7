@@ -23,24 +23,24 @@ class Cancel extends \Magento\Framework\App\Action\Action implements CsrfAwareAc
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Checkout\Model\Session $checkoutSession
     ) {
-            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-            $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
-            $baseDomain = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+            // $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            // $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+            // $baseDomain = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
 
-            if (PHP_VERSION_ID >= 70300) {
-                setcookie(
-                    '^(.*)',
-                    '',
-                    [
-                        'expires' => time() + 86400,
-                        'path'     => '/',
-                        'domain'   => $baseDomain,
-                        'secure' => true,
-                        'httponly' => true,
-                        'samesite' => 'None',
-                    ]
-                );
-            }
+            // if (PHP_VERSION_ID >= 70300) {
+            //     setcookie(
+            //         '^(.*)',
+            //         '',
+            //         [
+            //             'expires' => time() + 86400,
+            //             'path'     => '/',
+            //             'domain'   => $baseDomain,
+            //             'secure' => true,
+            //             'httponly' => true,
+            //             'samesite' => 'None',
+            //         ]
+            //     );
+            // }
 
             $this->request = $request;
             $this->formKey = $formKey;
