@@ -1,6 +1,6 @@
 {
     "name": "payin7/mage2payin7",
-    "description": "Paga con Payin7 en Magento.",
+    "description": "Payin7 module for magento 2.",
     "require": {
         "php": "~5.5.0|~5.6.0|~7.0.0",
         "magento/module-sales": "100.0.*",
