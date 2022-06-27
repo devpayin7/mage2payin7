@@ -23,6 +23,7 @@
                     <payin7_api>https://api.payin7.com</payin7_api>
                     <minimum_cost>25</minimum_cost>
                     <maximum_cost>9999</maximum_cost>
+                    <payinorderstatus>processing</payinorderstatus>
                 </general>
                 
                 <calculadora>
