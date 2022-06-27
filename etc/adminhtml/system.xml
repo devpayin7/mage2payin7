@@ -22,7 +22,7 @@
                         <label>Calculator key</label>
                         <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
                     </field>
-                    <field id="allowspecific" translate="label" type="allowspecific" sortOrder="130" showInDefault="9" showInWebsite="1" showInStore="0">
+                    <field id="payinorderstatus" translate="label" type="select" sortOrder="130" showInDefault="9" showInWebsite="1" showInStore="0">
                         <label>New order status</label>
                         <source_model>Magento\Sales\Model\Config\Source\Order\Status\Status</source_model>
                     </field>
