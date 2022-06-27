@@ -145,7 +145,7 @@ class Callback extends \Magento\Framework\App\Action\Action implements CsrfAware
 
                     if($order->getIncrementId()) {
                         $newStatus = $this->scopeConfig->getValue('payment/mage2payin7/general/payinorderstatus');
-                        $order->setState('processing')->setStatus($newStatus);
+                        $order->setState($newStatus)->setStatus($newStatus);
                         //Creamos la factura
                         if($order->canInvoice()) {
                             $invoice = $this->_invoiceService->prepareInvoice($order);
